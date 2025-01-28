@@ -1,0 +1,30 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:LifeBooks.ViewModels"
+             x:Class="LifeBooks.Views.BookRegistrationPage"
+             Title="本の登録">
+
+    <ContentPage.BindingContext>
+        <viewModels:BookRegistrationViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry Placeholder="書籍名" Text="{Binding Title}" />
+        <Entry Placeholder="著者名" Text="{Binding Author}" />
+        <!--<Entry Placeholder="ISBN" Text="{Binding ISBN}" Keyboard="Numeric" />-->
+        <Entry Placeholder="出版社名" Text="{Binding Publisher}" />
+        <Entry Placeholder="ジャンル" Text="{Binding Genre}" />
+        <Editor Placeholder="感想やメモ" Text="{Binding Description}" HeightRequest="100" />
+
+        <Button Text="登録" Command="{Binding RegisterCommand}" />
+
+        <Label Text="{Binding RegistrationMessage}" TextColor="Green" />
+
+        <Label Text="{Binding RegisteredBook.Title}" />
+        <Label Text="{Binding RegisteredBook.Author}" />
+        <!--<Label Text="{Binding RegisteredBook.ISBN}" />-->
+        <Label Text="{Binding RegisteredBook.Publisher}" />
+        <Label Text="{Binding RegisteredBook.Genre}" />
+        <Label Text="{Binding RegisteredBook.Description}" />
+    </VerticalStackLayout>
+</ContentPage>

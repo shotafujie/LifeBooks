@@ -21,7 +21,9 @@ namespace LifeBooks.ViewModels
                 ISBN = "9784344434158",
                 Publisher = "幻冬舎",
                 Genre = "Fiction",
-                Description = ""
+                Description = "おもしろかった",
+                BeginingDay = new DateTime(2025, 1, 28),
+                EndDay = new DateTime(2025, 2, 28)
             });
         }
     }

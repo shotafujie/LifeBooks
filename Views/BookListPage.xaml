@@ -9,6 +9,7 @@
     </ContentPage.BindingContext>
     <VerticalStackLayout
         Padding="20">
+        <Button Text="本の登録" Clicked="GoToRegistrationPage" />
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 

@@ -9,11 +9,11 @@ namespace LifeBooks.Models
     public class Book
     {
         /// <summary>
-        /// タイトル
+        /// タイトル名
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 著者
+        /// 著者名
         /// </summary>
         public string Author { get; set; }
         /// <summary>
@@ -21,7 +21,7 @@ namespace LifeBooks.Models
         /// </summary>
         public string ISBN { get; set; }
         /// <summary>
-        /// 出版社
+        /// 出版社名
         /// </summary>
         public string Publisher { get; set; }
         /// <summary>
@@ -30,16 +30,21 @@ namespace LifeBooks.Models
         public string Genre { get; set; }
 
         /// <summary>
-        /// 説明
+        /// 感想やメモ
         /// </summary>
         public string Description { get; set; }
         /// <summary>
         /// 画像
         /// </summary>
         public string Image { get; set; }
+
         /// <summary>
-        /// 読んだ日
+        /// 読み始めた日
         /// </summary>
-        public DateTime ReadDay { get; set; }
+        public DateTime BeginingDay { get; set; }
+        /// <summary>
+        /// 読み終えた日
+        /// </summary>
+        public DateTime EndDay { get; set; }
     }
 }

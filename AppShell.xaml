@@ -12,5 +12,8 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:BookListPage}"
         Route="MainPage" />
-
+    <ShellContent
+        Title="AddBook"
+        ContentTemplate="{DataTemplate views:BookRegistrationPage}"
+        Route="BookRegistrationPage" />
 </Shell>

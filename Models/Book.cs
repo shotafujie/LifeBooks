@@ -46,5 +46,16 @@ namespace LifeBooks.Models
         /// 読み終えた日
         /// </summary>
         public DateTime EndDay { get; set; }
+
+        /// <summary>
+        /// 表示形式
+        /// </summary>
+        public string ReadingPeriod
+        {
+            get
+            {
+                return $"{BeginingDay:yyyy.MM.dd}～{EndDay:yyyy.MM.dd}";
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace LifeBooks.ViewModels
             LoadBooksAsync();
         }
 
-        private async Task LoadBooksAsync()
+        public async Task LoadBooksAsync()
         {
             try
             {

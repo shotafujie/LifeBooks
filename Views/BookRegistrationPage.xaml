@@ -7,15 +7,22 @@
     <ContentPage.BindingContext>
         <viewModels:BookRegistrationViewModel />
     </ContentPage.BindingContext>
-
     <VerticalStackLayout Padding="20" Spacing="10">
+        <Button Text="一覧ページへ" Command="{Binding GoToListPageCommand}"/>
         <Entry Placeholder="書籍名" Text="{Binding Title}" />
-        <Entry Placeholder="著者名" Text="{Binding Author}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Entry Placeholder="著者名" Text="{Binding Author}" Grid.Column="0"/>
+            <Entry Placeholder="出版社名" Text="{Binding Publisher}" Grid.Column="1"/>
+        </Grid>
         <!--<Entry Placeholder="ISBN" Text="{Binding ISBN}" Keyboard="Numeric" />-->
-        <Entry Placeholder="出版社名" Text="{Binding Publisher}" />
         <Entry Placeholder="ジャンル" Text="{Binding Genre}" />
         <Editor Placeholder="感想やメモ" Text="{Binding Description}" HeightRequest="100" />
 
         <Button Text="登録" Command="{Binding RegisterCommand}" />
+
     </VerticalStackLayout>
 </ContentPage>

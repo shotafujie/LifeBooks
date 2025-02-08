@@ -17,4 +17,9 @@ public partial class BookListPage : ContentPage
     {
         await Shell.Current.GoToAsync(nameof(BookRegistrationPage));
     }
+    private void BookListPage_Appearing(object sender, EventArgs e)
+    {
+        var viewModel = (BookListViewModel)BindingContext;
+        viewModel.LoadBooksAsync();
+    }
 }

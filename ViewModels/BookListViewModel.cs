@@ -1,151 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using LifeBooks.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace LifeBooks.ViewModels
 {
     public partial class BookListViewModel : ObservableObject
     {
-        public ObservableCollection<Book> Books { get; } = new();
+        [ObservableProperty]
+        private ObservableCollection<Book> books = new();
+
+        private readonly BookRepository _bookRepository;
+
         public BookListViewModel()
         {
-            Books.Add(new Book
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Books.db");
+            _bookRepository = new BookRepository(dbPath);
+
+            LoadBooksAsync();
+        }
+
+        private async Task LoadBooksAsync()
+        {
+            try
             {
-                Title = "謎解き広報課",
-                Author = "天祢涼",
-                ISBN = "9784344434158",
-                Publisher = "幻冬舎",
-                Genre = "Fiction",
-                Description = "おもしろかった",
-                BeginingDay = new DateTime(2025, 1, 28),
-                EndDay = new DateTime(2025, 2, 28)
-            });
-            Books.Add(new Book
+                var bookList = await _bookRepository.GetBooksAsync();
+                Books = new ObservableCollection<Book>(bookList);
+            }
+            catch (System.Exception ex)
             {
-                Title = "浜村渚の計算ノート",
-                Author = "青柳 碧人",
-                ISBN = "9784062769815",
-                Publisher = "講談社",
-                Genre = "Math",
-                Description = "数学",
-                BeginingDay = new DateTime(2025, 1, 12),
-                EndDay = new DateTime(2025, 2, 8)
-            });
-            Books.Add(new Book
-            {
-                Title = "みんなでアジャイル",
-                Author = "Matt LeMay",
-                ISBN = "9784873119090",
-                Publisher = "オライリージャパン",
-                Genre = "Tech",
-                Description = "Agileやるときにまず読む本",
-                BeginingDay = new DateTime(2025, 1, 18),
-                EndDay = new DateTime(2025, 1, 28)
-            });
-            Books.Add(new Book
-            {
-                Title = "謎解き広報課",
-                Author = "天祢涼",
-                ISBN = "9784344434158",
-                Publisher = "幻冬舎",
-                Genre = "Fiction",
-                Description = "おもしろかった",
-                BeginingDay = new DateTime(2025, 1, 28),
-                EndDay = new DateTime(2025, 2, 28)
-            });
-            Books.Add(new Book
-            {
-                Title = "浜村渚の計算ノート",
-                Author = "青柳 碧人",
-                ISBN = "9784062769815",
-                Publisher = "講談社",
-                Genre = "Math",
-                Description = "数学",
-                BeginingDay = new DateTime(2025, 1, 12),
-                EndDay = new DateTime(2025, 2, 8)
-            });
-            Books.Add(new Book
-            {
-                Title = "みんなでアジャイル",
-                Author = "Matt LeMay",
-                ISBN = "9784873119090",
-                Publisher = "オライリージャパン",
-                Genre = "Tech",
-                Description = "Agileやるときにまず読む本",
-                BeginingDay = new DateTime(2025, 1, 18),
-                EndDay = new DateTime(2025, 1, 28)
-            }); 
-            Books.Add(new Book
-            {
-                Title = "謎解き広報課",
-                Author = "天祢涼",
-                ISBN = "9784344434158",
-                Publisher = "幻冬舎",
-                Genre = "Fiction",
-                Description = "おもしろかった",
-                BeginingDay = new DateTime(2025, 1, 28),
-                EndDay = new DateTime(2025, 2, 28)
-            });
-            Books.Add(new Book
-            {
-                Title = "浜村渚の計算ノート",
-                Author = "青柳 碧人",
-                ISBN = "9784062769815",
-                Publisher = "講談社",
-                Genre = "Math",
-                Description = "数学",
-                BeginingDay = new DateTime(2025, 1, 12),
-                EndDay = new DateTime(2025, 2, 8)
-            });
-            Books.Add(new Book
-            {
-                Title = "みんなでアジャイル",
-                Author = "Matt LeMay",
-                ISBN = "9784873119090",
-                Publisher = "オライリージャパン",
-                Genre = "Tech",
-                Description = "Agileやるときにまず読む本",
-                BeginingDay = new DateTime(2025, 1, 18),
-                EndDay = new DateTime(2025, 1, 28)
-            });
-            Books.Add(new Book
-            {
-                Title = "謎解き広報課",
-                Author = "天祢涼",
-                ISBN = "9784344434158",
-                Publisher = "幻冬舎",
-                Genre = "Fiction",
-                Description = "おもしろかった",
-                BeginingDay = new DateTime(2025, 1, 28),
-                EndDay = new DateTime(2025, 2, 28)
-            });
-            Books.Add(new Book
-            {
-                Title = "浜村渚の計算ノート",
-                Author = "青柳 碧人",
-                ISBN = "9784062769815",
-                Publisher = "講談社",
-                Genre = "Math",
-                Description = "数学",
-                BeginingDay = new DateTime(2025, 1, 12),
-                EndDay = new DateTime(2025, 2, 8)
-            });
-            Books.Add(new Book
-            {
-                Title = "みんなでアジャイル",
-                Author = "Matt LeMay",
-                ISBN = "9784873119090",
-                Publisher = "オライリージャパン",
-                Genre = "Tech",
-                Description = "Agileやるときにまず読む本",
-                BeginingDay = new DateTime(2025, 1, 18),
-                EndDay = new DateTime(2025, 1, 28)
-            });
+                Console.WriteLine($"Error loading books: {ex.Message}");
+                // 例えば、エラーメッセージを表示する、ログに出力するなどの処理を追加
+                //await Shell.Current.DisplayAlert("Error", "Failed to load books.", "OK");
+            }
         }
     }
 }

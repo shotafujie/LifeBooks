@@ -26,9 +26,17 @@ public partial class BookRegistrationViewModel : ObservableObject
     private string registrationMessage;
 
     public Book RegisteredBook { get; set; } = new();
+    
+    private readonly BookRepository _bookRepository;
+
+    public BookRegistrationViewModel()
+    {
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Books.db");
+        _bookRepository = new BookRepository(dbPath);
+    }
 
     [RelayCommand]
-    private void Register()
+    private async Task Register()
     {
         RegisteredBook.Title = Title;
         RegisteredBook.Author = Author;
@@ -36,7 +44,7 @@ public partial class BookRegistrationViewModel : ObservableObject
         RegisteredBook.Publisher = Publisher;
         RegisteredBook.Genre = Genre;
         RegisteredBook.Description = Description;
-
+        await _bookRepository.AddBookAsync(RegisteredBook);
         RegistrationMessage = "登録が完了しました。";
 
     }

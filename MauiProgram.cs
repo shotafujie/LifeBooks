@@ -13,10 +13,12 @@ namespace LifeBooks
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("BIZ-UDPGothic-02.ttf", "BIZUDPGothicRegular");
+                    fonts.AddFont("BIZ-UDPGothic-Bold-02.ttf", "BIZUDPGothicBold");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

@@ -17,14 +17,5 @@
         <Editor Placeholder="感想やメモ" Text="{Binding Description}" HeightRequest="100" />
 
         <Button Text="登録" Command="{Binding RegisterCommand}" />
-
-        <Label Text="{Binding RegistrationMessage}" TextColor="Green" />
-
-        <Label Text="{Binding RegisteredBook.Title}" />
-        <Label Text="{Binding RegisteredBook.Author}" />
-        <!--<Label Text="{Binding RegisteredBook.ISBN}" />-->
-        <Label Text="{Binding RegisteredBook.Publisher}" />
-        <Label Text="{Binding RegisteredBook.Genre}" />
-        <Label Text="{Binding RegisteredBook.Description}" />
     </VerticalStackLayout>
 </ContentPage>

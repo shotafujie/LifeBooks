@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,18 @@ namespace LifeBooks.Models
 {
     public class Book
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
         /// <summary>
         /// タイトル名
         /// </summary>
+        [NotNull]
         public string Title { get; set; }
         /// <summary>
         /// 著者名
         /// </summary>
+        [NotNull]
         public string Author { get; set; }
         /// <summary>
         /// ISBN
@@ -23,10 +29,12 @@ namespace LifeBooks.Models
         /// <summary>
         /// 出版社名
         /// </summary>
+        [NotNull]
         public string Publisher { get; set; }
         /// <summary>
         /// ジャンル
         /// </summary>
+        [NotNull]
         public string Genre { get; set; }
 
         /// <summary>
@@ -46,5 +54,16 @@ namespace LifeBooks.Models
         /// 読み終えた日
         /// </summary>
         public DateTime EndDay { get; set; }
+
+        /// <summary>
+        /// 表示形式
+        /// </summary>
+        public string ReadingPeriod
+        {
+            get
+            {
+                return $"{BeginingDay:yyyy.MM.dd}～{EndDay:yyyy.MM.dd}";
+            }
+        }
     }
 }

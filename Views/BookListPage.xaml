@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:LifeBooks.ViewModels"
              x:Class="LifeBooks.Views.BookListPage"
-             Title="Book List">
+             Title="本棚"
+             Appearing="BookListPage_Appearing">
 
     <ContentPage.BindingContext>
         <viewModels:BookListViewModel />
@@ -26,8 +27,7 @@
         </Grid.RowDefinitions>
 
         <VerticalStackLayout Grid.Row="0" Padding="20">
-            <Button Text="本の登録" Clicked="GoToRegistrationPage" />
-            <Label Text="本棚" FontSize="Header" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Button Text="本を登録する" Clicked="GoToRegistrationPage" />
         </VerticalStackLayout>
 
         <ScrollView Grid.Row="1">

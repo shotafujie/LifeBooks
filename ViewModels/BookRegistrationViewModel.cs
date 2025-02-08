@@ -35,6 +35,10 @@ public partial class BookRegistrationViewModel : ObservableObject
         _bookRepository = new BookRepository(dbPath);
     }
 
+    /// <summary>
+    /// 本の登録
+    /// </summary>
+    /// <returns></returns>
     [RelayCommand]
     private async Task Register()
     {
@@ -46,6 +50,15 @@ public partial class BookRegistrationViewModel : ObservableObject
         RegisteredBook.Description = Description;
         await _bookRepository.AddBookAsync(RegisteredBook);
         RegistrationMessage = "登録が完了しました。";
-
+        await Shell.Current.GoToAsync("..");
+    }
+    /// <summary>
+    /// 一覧画面に戻る
+    /// </summary>
+    /// <returns></returns>
+    [RelayCommand]
+    private async Task GoToListPage()
+    {
+        await Shell.Current.GoToAsync("..");
     }
 }
